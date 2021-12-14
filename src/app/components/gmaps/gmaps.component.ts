@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GmapsComponent implements OnInit {
 
-  title = 'My first AGM project';
+  title = 'Te esperamos !!!';
   lat = 5.71781;
   lng = -72.92700;
 
