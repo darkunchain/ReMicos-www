@@ -1,0 +1,10 @@
+swiper {
+  height: 35vw;
+  width: 90%;
+  margin-left: 5%;
+}
+
+
+.swiper-wrapper {
+  box-sizing: border-box;
+}
