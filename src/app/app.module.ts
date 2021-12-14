@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { AgmCoreModule } from '@agm/core';
+import { GmapsComponent } from './components/gmaps/gmaps.component';
 
 
 @NgModule({
@@ -14,13 +16,16 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    GmapsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAHLkpXA6NJ-zobslk6rmyQ53JeoR8jQBQ'
+    })
 
   ],
   providers: [],
