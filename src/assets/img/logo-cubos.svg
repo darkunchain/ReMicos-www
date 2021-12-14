@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="logo.svg"
+   sodipodi:docname="logo-cubos.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +23,11 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.40567375"
-     inkscape:cx="721.02275"
-     inkscape:cy="-277.31644"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
+     inkscape:zoom="1.1474186"
+     inkscape:cx="271.47894"
+     inkscape:cy="-11.76554"
+     inkscape:window-width="1366"
+     inkscape:window-height="697"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -159,92 +159,74 @@
          d="m 21.350285,8.19191 1.84472,12.336569 -0.922361,4.496506 -2.07531,-12.451863 z"
          id="path873" />
     </g>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.9668px;line-height:1.25;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';letter-spacing:0px;word-spacing:0px;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.549172"
-       x="-9.322711"
-       y="33.896778"
+    <g
+       aria-label="R"
+       transform="matrix(-1.0263111,0.31568128,0.37749766,0.85824956,0,0)"
        id="text59804"
-       transform="matrix(-1.0263111,0.31568128,0.37749766,0.85824956,0,0)"><tspan
-         sodipodi:role="line"
-         id="tspan59802"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';direction:ltr;fill:#fdfdfd;fill-opacity:1;stroke-width:0.549172"
-         x="-9.322711"
-         y="33.896778"
-         dx="0"
-         dy="0"
-         rotate="0 0">R</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:20.2125px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.505312"
-       x="32.959583"
-       y="-1.381423"
+       style="font-size:21.9668px;line-height:1.25;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';letter-spacing:0px;word-spacing:0px;fill:#fdfdfd;stroke-width:0.549172">
+      <path
+         d="m -4.6657492,20.49703 q -0.3954025,-0.197702 -0.8127717,-0.197702 -0.5711368,0 -1.1203068,0.373436 l -0.3514688,0.263602 -0.0659,1.933078 q 0,0.285569 -0.021967,0.768838 0,0.461303 0,0.615071 l 0.021967,0.593103 h 0.043934 q 0.54917,0 1.427842,-0.439336 0.8127717,-0.395402 1.2960413,-1.054406 0.5052364,-0.659004 0.5052364,-1.318008 0,-0.263602 -0.0659,-0.48327 -0.2416348,-0.746871 -0.8567052,-1.054406 z m -1.1642405,-1.120307 q 0.2636016,-0.0659 0.5272032,-0.0659 0.6150705,0 1.1862073,0.241635 0.5931036,0.219668 0.9226056,0.615071 0.5931036,0.68097 0.5931036,1.867178 0,0.702937 -0.2636016,1.274074 -0.439336,0.900639 -1.64751,1.64751 l -0.5272033,0.329502 0.9226057,0.307535 q 2.6799497,0.900639 4.0418913,2.284548 0.48326961,0.505236 0.48326961,0.746871 0,0.131801 -0.109834,0.241635 -0.109834,0.109834 -0.26360161,0.109834 -0.39540241,0 -1.8012777,-0.812772 -1.4937424,-0.878672 -2.3943812,-1.208174 -0.659004,-0.263602 -1.6255433,-0.54917 -0.9445724,-0.285568 -1.1203068,-0.285568 h -0.021967 q -0.021967,0.02197 0.1757344,1.559643 0.3954024,2.767816 0.3954024,3.316986 0,0.351469 -0.087867,0.461303 -0.087867,0.109834 -0.3075352,0.109834 -0.3734356,0 -0.8567052,-1.757344 -0.5711369,-2.130779 -0.5711369,-5.711368 0,-2.416348 0.1537676,-3.360921 0.1537677,-0.944572 0.5711369,-0.944572 h 0.021967 q 0.043934,0.02197 0.0659,0.02197 h 0.0659 q 0.2416348,0 0.8567052,-0.219668 z"
+         id="path866" />
+    </g>
+    <g
+       aria-label="e"
+       transform="rotate(45)"
        id="text63470"
-       transform="rotate(45)"><tspan
-         sodipodi:role="line"
-         id="tspan63468"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.505312"
-         x="32.959583"
-         y="-1.381423">e</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22.9237px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.573093"
-       x="37.678791"
-       y="34.319027"
+       style="font-size:20.2125px;line-height:1.25;fill:#fdfdfd;stroke-width:0.505312">
+      <path
+         d="m 37.588246,-8.8398354 q -0.4851,-0.202125 -0.747863,-0.2627625 -0.303187,-0.08085 -0.444675,-0.08085 -0.1617,0 -0.424462,0.1414874 -0.747863,0.3840375 -0.848925,1.334025 -0.04042,0.4851 0.04042,0.4851 0.121275,0 0.88935,-0.282975 0.788287,-0.3031875 1.152112,-0.5053125 0.687225,-0.363825 0.687225,-0.525525 0,-0.1617 -0.303187,-0.3031875 z m -1.85955,-1.2531746 q 0.363825,-0.101063 0.707437,-0.101063 1.394663,0 2.284013,0.8893502 0.202125,0.2021249 0.24255,0.3436124 0.06064,0.121275 0.06064,0.4244625 0,0.3031875 -0.08085,0.444675 -0.06064,0.121275 -0.384037,0.4244625 -0.8085,0.7478625 -2.607413,1.2329625 -0.6468,0.1819125 -0.6468,0.24255 0,0.121275 0.222338,0.5861625 0.222337,0.444675 0.40425,0.6468 0.24255,0.2627625 0.586162,0.3840375 0.202125,0.040425 0.303188,0.040425 0.545737,0 1.435087,-0.7074375 0.586163,-0.4648875 0.848925,-0.4648875 0.141488,0 0.262763,0.121275 0.141487,0.1414875 0.141487,0.3234 0,0.3031875 -0.424462,0.7882875 -0.949988,1.0308374 -2.223375,1.0308374 -1.111688,0 -1.798913,-0.8084999 -1.010625,-1.1925375 -1.010625,-2.951025 v -0.282975 q 0.06064,-2.0616749 1.677638,-2.6074121 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path870" />
+    </g>
+    <g
+       aria-label="M"
+       transform="rotate(-8.6344534)"
        id="text70294"
-       transform="rotate(-8.6344534)"><tspan
-         sodipodi:role="line"
-         id="tspan70292"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.573093"
-         x="37.678791"
-         y="34.319027">M</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22.7522px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.568806"
-       x="46.980621"
-       y="33.520905"
+       style="font-size:22.9237px;line-height:1.25;fill:#fdfdfd;stroke-width:0.573093">
+      <path
+         d="m 39.168832,20.473112 q 0.04585,-0.0917 0.320931,-0.04585 0.298008,0.04585 0.962796,0.916948 0.687711,0.848176 1.535888,2.246522 l 0.894024,1.512964 0.527245,-1.008642 q 0.573093,-1.077414 1.05449,-2.177752 0.573093,-1.23788 0.61894,-1.283727 0.114619,-0.160466 0.458474,-0.114619 0.366779,0.02292 0.527245,0.389703 0.320932,0.687711 0.985719,5.478765 0.573093,4.195037 0.573093,4.745206 0,0.320931 -0.114619,0.43555 -0.160465,0.18339 -0.481397,0.18339 -0.275085,0 -0.412627,-0.114619 -0.183389,-0.137542 -0.458474,-2.269446 -0.252161,-2.154828 -0.481398,-4.195037 -0.206313,-2.063134 -0.320931,-2.063134 -0.02292,0 -1.008643,1.833897 -0.664787,1.237879 -0.916948,1.604659 -0.252161,0.343855 -0.504322,0.343855 -0.114618,0 -0.183389,-0.02292 -0.320932,-0.06877 -1.85682,-2.521607 l -0.527245,-0.825253 -0.06877,1.696354 q 0,0.343855 -0.06877,1.788049 -0.04585,1.444193 -0.06877,2.131904 -0.06877,2.246522 -0.252161,2.429912 -0.18339,0.18339 -0.43555,0.18339 -0.229237,0 -0.389703,-0.137543 -0.114619,-0.06877 -0.160466,-0.275084 -0.02292,-0.229237 -0.04585,-1.008643 -0.02292,-0.802329 -0.04585,-2.567454 v -1.650507 q 0,-2.498683 0.137542,-3.78241 0.160466,-1.788049 0.206314,-1.85682 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path874" />
+    </g>
+    <g
+       aria-label="i"
+       transform="scale(1.2487208,0.80081952)"
        id="text72404"
-       transform="scale(1.2487208,0.80081952)"><tspan
-         sodipodi:role="line"
-         id="tspan72402"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.568806"
-         x="46.980621"
-         y="33.520905">i</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:22.3043px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.557608"
-       x="64.777641"
-       y="47.011963"
+       style="font-size:22.7522px;line-height:1.25;fill:#fdfdfd;stroke-width:0.568806">
+      <path
+         d="m 48.231992,24.010485 q 0.136513,-0.136513 0.364035,-0.136513 0.295779,0 0.364036,0.20477 0.113761,0.432292 0.273026,2.548246 0.159265,2.093203 0.159265,3.139804 0,0.113761 -0.02275,0.250274 0,0.136513 0,0.159265 -0.113761,0.819079 -0.432292,0.819079 h -0.09101 q -0.295779,-0.0455 -0.432292,-0.409539 -0.136513,-0.386788 -0.20477,-1.387884 -0.09101,-1.160362 -0.09101,-2.980538 0,-2.047698 0.113761,-2.206964 z m 0.06826,-2.616503 q 0.182017,-0.113761 0.364035,-0.113761 0.250274,0 0.455044,0.20477 0.182018,0.182018 0.182018,0.318531 0,0.136513 -0.136514,0.341283 -0.136513,0.227522 -0.546052,0.227522 -0.250275,0 -0.364036,-0.113761 -0.113761,-0.113761 -0.113761,-0.40954 0,-0.364035 0.159266,-0.455044 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path877" />
+    </g>
+    <g
+       aria-label="c"
+       transform="rotate(-16.320631)"
        id="text76098"
-       transform="rotate(-16.320631)"><tspan
-         sodipodi:role="line"
-         id="tspan76096"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.557608"
-         x="64.777641"
-         y="47.011963">c</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:24.5592px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.613979"
-       x="86.232162"
-       y="-22.082666"
+       style="font-size:22.3043px;line-height:1.25;fill:#fdfdfd;stroke-width:0.557608">
+      <path
+         d="m 67.967156,37.621852 q 0.06691,0 0.15613,-0.0223 0.111522,-0.0223 0.178435,-0.0223 0.08922,-0.0223 0.133826,-0.0223 0.178434,0 0.669129,0.200738 0.490694,0.223043 0.557607,0.446086 0.0223,0.04461 0.0223,0.133826 0,0.289956 -0.847563,0.446086 -0.914476,0.15613 -1.249041,0.736042 -0.111521,0.245347 -0.31226,1.271345 -0.200739,1.025998 -0.200739,1.427475 0,0.312261 0.178435,0.646825 0.178434,0.334565 0.356868,0.334565 h 0.178435 q 0.669129,0 1.360562,-0.535304 0.379173,-0.289956 0.736042,-0.289956 0.579912,0 0.579912,0.691434 0,0.31226 -0.423782,0.669129 -0.423782,0.334564 -1.092911,0.579912 -0.602216,0.223043 -1.182127,0.223043 -1.427476,0 -1.76204,-1.204433 -0.08922,-0.267651 -0.08922,-1.025997 0,-1.338258 0.223043,-2.163518 0.289956,-1.025997 0.802954,-1.739735 0.512999,-0.713738 1.025998,-0.780651 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path880" />
+    </g>
+    <g
+       aria-label="o"
+       transform="rotate(30)"
        id="text79726"
-       transform="rotate(30)"><tspan
-         sodipodi:role="line"
-         id="tspan79724"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.613979"
-         x="86.232162"
-         y="-22.082666">o</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:24.928px;line-height:1.25;font-family:sans-serif;fill:#fdfdfd;fill-opacity:1;stroke:none;stroke-width:0.623202"
-       x="102.66971"
-       y="25.471115"
-       id="text81868"><tspan
-         sodipodi:role="line"
-         id="tspan81866"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic';fill:#fdfdfd;fill-opacity:1;stroke-width:0.623202"
-         x="102.66971"
-         y="25.471115">s</tspan></text>
+       style="font-size:24.5592px;line-height:1.25;fill:#fdfdfd;stroke-width:0.613979">
+      <path
+         d="m 91.561509,-30.187202 q -0.29471,-0.61398 -0.442066,-0.810454 -0.147355,-0.221033 -0.343828,-0.221033 -0.171915,0 -0.515744,0.147355 -0.58942,0.270152 -0.982368,1.006928 -0.392947,0.736776 -0.442065,1.743703 -0.02456,0.221033 -0.02456,0.540302 0,0.442066 0.221032,0.785895 0.466625,0.835012 1.350756,0.835012 0.957809,0 1.448993,-0.957808 0.245592,-0.564862 0.245592,-1.25252 0,-0.736776 -0.515743,-1.81738 z m -1.080605,-2.210329 q 0.835013,-0.09824 0.884131,-0.09824 h 0.04912 q 0.392947,0 0.884131,0.61398 0.491184,0.61398 0.810454,1.473552 0.245592,0.638539 0.245592,1.866499 0,1.031486 -0.196474,1.670026 -0.736776,2.112091 -2.480479,2.112091 -1.498111,-0.02456 -2.333124,-0.908691 -0.810454,-0.884131 -0.810454,-2.45592 0,-0.04912 0,-0.196473 0.02456,-0.147355 0.02456,-0.196474 0.07368,-1.547229 0.835013,-2.627834 0.761335,-1.105164 2.087532,-1.25252 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path883" />
+    </g>
+    <g
+       aria-label="s"
+       id="text81868"
+       style="font-size:24.928px;line-height:1.25;fill:#fdfdfd;stroke-width:0.623202">
+      <path
+         d="m 105.86049,15.325419 q 0.34899,-0.49856 0.94727,-0.797696 0.59827,-0.299136 1.19654,-0.299136 0.94726,0 1.32118,0.573344 0.1745,0.274208 0.1745,0.423776 0,0.174496 -0.1745,0.348992 -0.14956,0.149568 -0.4487,0.149568 -0.24928,0 -0.42378,-0.02493 -0.14956,-0.02493 -0.4487,-0.02493 -0.34899,0 -0.54842,0.07478 -0.39884,0.149568 -0.39884,0.398848 0,0.274208 0.4487,0.274208 0.4487,0 1.12176,0.598272 0.69798,0.598272 1.04698,1.321184 0.37392,0.74784 0.37392,1.769888 0,0.697984 -0.1745,1.046976 -0.37392,0.74784 -1.12176,1.171616 -0.72291,0.398848 -1.59539,0.398848 -1.62032,0 -2.56759,-1.171616 -0.57334,-0.697984 -0.57334,-1.37104 0,-0.523488 0.42378,-0.722912 0.0997,-0.04986 0.29913,-0.04986 0.34899,0 0.7977,0.598272 0.79769,1.171616 1.8696,1.171616 0.49856,0 0.79769,-0.324064 0.32407,-0.348992 0.32407,-0.972192 0,-0.697984 -0.49856,-1.296256 -0.47363,-0.598272 -1.2464,-0.87248 -0.6232,-0.224352 -0.89741,-0.49856 -0.37392,-0.37392 -0.37392,-0.897408 0,-0.523488 0.34899,-0.99712 z"
+         style="font-family:'My Kids Handwritten-Basic';-inkscape-font-specification:'My Kids Handwritten-Basic'"
+         id="path886" />
+    </g>
     <path
        inkscape:original-d="M 22.77397,7.5415886"
        inkscape:path-effect="#path-effect895"
