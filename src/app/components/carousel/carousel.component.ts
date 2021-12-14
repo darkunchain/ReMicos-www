@@ -24,7 +24,11 @@ export class CarouselComponent implements OnInit {
       prevEl: '.swiper-button-prev'
     },
     spaceBetween: 30,
-    speed: 400,
+    speed: 1000,
+    autoplay: {
+      delay: 4000,
+    },
+    loop: true
   }
 
 
