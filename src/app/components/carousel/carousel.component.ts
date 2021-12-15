@@ -10,10 +10,7 @@ export class CarouselComponent implements OnInit {
 
   images = [
     "assets/img/carousel_novena.svg",
-    "assets/img/carousel1.png",
-    "assets/img/carousel2.png",
-    "assets/img/carousel3.png",
-    "assets/img/carousel4.png"
+    "assets/img/carousel_cumple.svg",
   ]
 
 
@@ -26,7 +23,7 @@ export class CarouselComponent implements OnInit {
     spaceBetween: 30,
     speed: 1000,
     autoplay: {
-      delay: 3500,
+      delay: 4000,
       disableOnInteraction: false,
     },
     loop: true
