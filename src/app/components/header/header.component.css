@@ -1,0 +1,43 @@
+
+
+@media (min-width: 100px) and (max-width: 575px) {
+  .container-sm, .container {
+    max-width: 560px;
+  }
+  .brand{
+    height: 60px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .brand{
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .brand{
+    height: 80px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .brand{
+    height: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .brand{
+    height: 80px;
+  }
+}
+
+
+
+
+
+
+.ptab {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+}
