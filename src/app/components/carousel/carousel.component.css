@@ -8,22 +8,34 @@
 
 @media (min-width: 576px) and (max-width: 767px) {
   swiper {
-    height: auto;
+    height: calc(width * 0.4);
     width: 90%;
     margin-left: 5%;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-
+  swiper {
+    height: calc(width * 0.4);
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-
+  swiper {
+    height: calc(width * 0.4);
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 @media (min-width: 1200px) {
-
+  swiper {
+    height: calc(width * 0.4);
+    width: 90%;
+    margin-left: 5%;
+  }
 }
 
 
