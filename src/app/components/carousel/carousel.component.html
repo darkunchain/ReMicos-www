@@ -1,7 +1,14 @@
 
   <swiper [config]="config">
     <div class="swiper-wrapper">
-      <img class="swiper-slide" *ngFor="let image of images" [src]="image" />
+      <div *ngIf="mobile;then verdadero else falso"></div>
+      <ng-template #verdadero>
+        <img class="swiper-slide" *ngFor="let image of imagesp" [src]="image" />
+      </ng-template>
+      <ng-template #falso>
+        <img class="swiper-slide" *ngFor="let image of images" [src]="image" />
+      </ng-template>
+
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 
 @Component({
@@ -8,6 +8,11 @@ import { SwiperOptions } from 'swiper';
 })
 export class CarouselComponent implements OnInit {
 
+  public mobile: boolean = false;
+
+  public getScreenWidth: any;
+  public getScreenHeight: any;
+
   images = [
     "assets/img/carousel_novena.svg",
     "assets/img/novena_marcas.jpeg",
@@ -16,6 +21,13 @@ export class CarouselComponent implements OnInit {
     "assets/img/carousel_cumple.svg",
 
   ]
+
+  imagesp = [
+    "assets/img/carousel_novena_p.svg",
+    "assets/img/carousel_cumple_p.svg",
+  ]
+
+
 
 
   config: SwiperOptions = {
@@ -36,9 +48,28 @@ export class CarouselComponent implements OnInit {
 
 
 
+
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+      this.getScreenWidth = window.innerWidth;
+      this.getScreenHeight = window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+
+  onWindowResize() {
+    console.log('this.mobile:', this.mobile)
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+    console.log('size:',[this.getScreenWidth, this.getScreenHeight])
+    if (this.getScreenWidth <= 600) { // 768px portrait
+      this.mobile = true;
+    }
+    else{
+      this.mobile = false;
+    }
   }
 
 }

@@ -19,17 +19,37 @@
   .brand{
     height: 80px;
   }
+
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
   .brand{
     height: 80px;
   }
+  .ptab{
+    font-size: 10px;
+  }
+  .me-sm-2 {
+    font-size: 10px;
+  }
+  .my-sm-0 {
+    font-size: 10px;
+  }
+
 }
 
 @media (min-width: 1200px) {
   .brand{
     height: 80px;
+  }
+  .ptab{
+    font-size: 12px;
+  }
+  .me-sm-2 {
+    font-size: 12px;
+  }
+  .my-sm-0 {
+    font-size: 12px;
   }
 }
 
