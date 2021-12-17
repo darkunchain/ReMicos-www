@@ -39,5 +39,54 @@
 
 
 .ptab {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+  background-color: #cf8d88;
+  border-radius: 5px;
+  clip-path: polygon(0% 0%, 100% 18%, 99% 83%, 75% 85%, 75% 100%, 48% 83%, 0 83%);
+  margin:0.5vw;
 }
+
+.ptab:hover , .ptab:focus{
+  background-color: #4c2ecf;
+
+}
+
+
+
+/* Fixed/sticky icon bar (vertically aligned 50% from the top of the screen) */
+.icon-bar {
+  position: fixed;
+  top: 20%;
+  right: 2px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 9500;
+}
+
+/* Style the icon bar links */
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+/* Style the social media icons with color, if you want */
+.icon-bar a:hover {
+  opacity: 0.5;
+  transform: translateX(-20px);
+}
+
+.facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.instagram {
+  background: linear-gradient(0deg, #fdcd52,#f67041, #f95149,#d63f8e,#ad30bc,#4069c9);
+  color: white;
+}
+

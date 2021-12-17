@@ -11,6 +11,7 @@ export class CarouselComponent implements OnInit {
   images = [
     "assets/img/carousel_novena.svg",
     "assets/img/novena_marcas.jpeg",
+    "assets/img/novena_17.jpeg",
     "assets/img/carousel_inicio.png",
     "assets/img/carousel_cumple.svg",
 

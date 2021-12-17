@@ -9,6 +9,9 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { AgmCoreModule } from '@agm/core';
 import { GmapsComponent } from './components/gmaps/gmaps.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { GmapsComponent } from './components/gmaps/gmaps.component';
     NgxUsefulSwiperModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAHLkpXA6NJ-zobslk6rmyQ53JeoR8jQBQ'
-    })
+    }),
+    BrowserAnimationsModule,
+    MatIconModule,
+    FontAwesomeModule
 
   ],
   providers: [],
