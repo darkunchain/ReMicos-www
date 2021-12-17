@@ -15,6 +15,12 @@
     color: tomato;
     font-size: 14;
   }
+  .me-sm-2 {
+    font-size: 12px;
+  }
+  .my-sm-0 {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -28,6 +34,12 @@
     color: tomato;
     font-size: 14;
   }
+  .me-sm-2 {
+    font-size: 12px;
+  }
+  .my-sm-0 {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -40,6 +52,12 @@
   .ptab:hover , .ptab:focus{
     color: tomato;
     font-size: 14;
+  }
+  .me-sm-2 {
+    font-size: 12px;
+  }
+  .my-sm-0 {
+    font-size: 12px;
   }
 
 }
