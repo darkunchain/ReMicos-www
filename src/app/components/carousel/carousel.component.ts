@@ -55,15 +55,21 @@ export class CarouselComponent implements OnInit {
   ngOnInit(){
       this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
+      if (this.getScreenWidth <= 600) { // 768px portrait
+        this.mobile = true;
+      }
+      else{
+        this.mobile = false;
+      }
   }
 
   @HostListener('window:resize', ['$event'])
 
   onWindowResize() {
-    console.log('this.mobile:', this.mobile)
+
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-    console.log('size:',[this.getScreenWidth, this.getScreenHeight])
+
     if (this.getScreenWidth <= 600) { // 768px portrait
       this.mobile = true;
     }
