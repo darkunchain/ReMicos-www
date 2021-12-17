@@ -8,7 +8,7 @@
     height: 60px;
   }
   .ptab {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .ptab:hover , .ptab:focus{
@@ -22,7 +22,7 @@
     height: 80px;
   }
   .ptab {
-    font-size: 11px;
+    font-size: 12px;
   }
   .ptab:hover , .ptab:focus{
     color: tomato;
@@ -35,7 +35,7 @@
     height: 80px;
   }
   .ptab {
-    font-size: 12px;
+    font-size: 14px;
   }
   .ptab:hover , .ptab:focus{
     color: tomato;
