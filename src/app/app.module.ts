@@ -12,6 +12,10 @@ import { GmapsComponent } from './components/gmaps/gmaps.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HorariosComponent } from './components/horarios/horarios.component';
+import { PageHomeComponent } from './components/page-home/page-home.component';
+import { PageHorariosComponent } from './components/page-horarios/page-horarios.component';
+import { PageAboutComponent } from './components/page-about/page-about.component';
 
 
 @NgModule({
@@ -20,7 +24,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
-    GmapsComponent
+    GmapsComponent,
+    HorariosComponent,
+    PageHomeComponent,
+    PageHorariosComponent,
+    PageAboutComponent
   ],
   imports: [
     BrowserModule,
