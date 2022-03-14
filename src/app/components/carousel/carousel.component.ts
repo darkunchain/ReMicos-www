@@ -14,19 +14,19 @@ export class CarouselComponent implements OnInit {
   public getScreenHeight: any;
 
   images = [
-    "assets/img/carousel_novena.svg",
-    "assets/img/novena_marcas.jpeg",
-    "assets/img/novena_17.jpeg",
+    //"assets/img/carousel_novena.svg",
+    //"assets/img/novena_marcas.jpeg",
+    //"assets/img/novena_17.jpeg",
     "assets/img/carousel_inicio.png",
     "assets/img/carousel_cumple.svg",
 
   ]
 
   imagesp = [
-    "assets/img/carousel_novena_p.svg",
+    //"assets/img/carousel_novena_p.svg",
     "assets/img/carousel_cumple_p.svg",
-    "assets/img/novena_marcas_p.jpeg",
-    "assets/img/novena_17_p.jpeg",
+    //"assets/img/novena_marcas_p.jpeg",
+    //"assets/img/novena_17_p.jpeg",
   ]
 
 
