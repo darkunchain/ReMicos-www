@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ReMicos Sogamoso: un espacio para jugar, imaginar y compartir en familia. Conoce nuestros horarios, precios y ubicación.">
+  <meta name="theme-color" content="#153b49">
+  <link rel="canonical" href="https://www.remicos.com.co/">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <title>ReMicos · Crecer jugando</title>
+</head>
+<body>
+<main class="site-shell">
+  <nav class="topbar" aria-label="Navegación principal">
+    <a class="brand" href="#inicio" aria-label="ReMicos, ir al inicio"><img src="assets/logo-cubos.png" alt="ReMicos"></a>
+    <div class="nav-links">
+      <a href="#momentos">Así se vive</a>
+      <a href="#novedades">Noticias</a>
+      <a href="#visitanos">Visítanos</a>
+    </div>
+    <button class="nav-contact" type="button" data-chat-open>Hablemos <span aria-hidden="true">↗</span></button>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+    <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span> RE·MICOS / SOGAMOSO</p>
+      <h1>La diversión<br>se vive <span class="hero-highlight">a lo grande<span class="spark" aria-hidden="true">✳</span></span></h1>
+      <p class="hero-intro">Un lugar para saltar, explorar y compartir. Cada visita abre la puerta a una nueva aventura.</p>
+      <div class="hero-actions">
+        <a class="primary-action" href="#visitanos">Planea tu visita <span aria-hidden="true">↗</span></a>
+        <a class="text-action" href="#momentos">Descubre ReMicos <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-status" data-open-status aria-live="polite">
+        <span class="status-dot"></span>
+        <div><strong data-status-message>Abierto ahora</strong><small data-schedule-message>Hoy hasta las 7:30 p. m.</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="assets/remicos-playroom-concept.jpg" alt="Imagen conceptual de un espacio de juegos infantil lleno de color">
+      <span class="image-note">Imagen conceptual</span>
+      <div class="hero-sticker" aria-hidden="true"><strong>¡Aquí</strong><span>se juega!</span></div>
+      <div class="hero-corner" aria-hidden="true">↗</div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Experiencias ReMicos">
+    <div class="ticker-track" aria-hidden="true">
+      <span>JUGAR</span><b>✳</b><span>EXPLORAR</span><b>✳</b><span>REÍR</span><b>✳</b><span>COMPARTIR</span><b>✳</b>
+      <span>JUGAR</span><b>✳</b><span>EXPLORAR</span><b>✳</b><span>REÍR</span><b>✳</b><span>COMPARTIR</span><b>✳</b>
+    </div>
+  </div>
+
+  <section class="moments section" id="momentos">
+    <header class="section-heading">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> ASÍ SE VIVE REMICOS</p><h2>Momentos que<br><em>no se quedan quietos.</em></h2></div>
+      <p>Un vistazo a la energía, el color y las sonrisas que llenan cada visita.</p>
+    </header>
+    <div class="photo-accordion" aria-label="Galería de momentos">
+      <button type="button" class="photo-panel active" style="--photo-position:center" aria-expanded="true">
+        <img src="assets/galeria-entrada.jpg" alt="Familias y personaje de ReMicos frente a la zona de juegos" loading="lazy">
+        <span class="photo-shade"></span><span class="photo-number">01</span>
+        <span class="photo-copy"><small>Explorar</small><strong>Un mundo para descubrir</strong><span>Colores, juego y una aventura distinta en cada visita.</span></span>
+        <span class="photo-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button type="button" class="photo-panel" style="--photo-position:center 18%" aria-expanded="false">
+        <img src="assets/galeria-personaje.jpg" alt="Personaje dálmata de ReMicos recibiendo a una familia" loading="lazy">
+        <span class="photo-shade"></span><span class="photo-number">02</span>
+        <span class="photo-copy"><small>Compartir</small><strong>Personajes que sorprenden</strong><span>La diversión empieza desde que llegan a ReMicos.</span></span>
+        <span class="photo-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button type="button" class="photo-panel" style="--photo-position:center" aria-expanded="false">
+        <img src="assets/galeria-juego.jpg" alt="Niña disfrutando una atracción infantil en ReMicos" loading="lazy">
+        <span class="photo-shade"></span><span class="photo-number">03</span>
+        <span class="photo-copy"><small>Jugar</small><strong>Energía sin pausa</strong><span>Tiempo para moverse, reír y ser pequeños.</span></span>
+        <span class="photo-arrow" aria-hidden="true">↗</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="news section" id="novedades">
+    <header class="section-heading">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> LO NUEVO</p><h2>Noticias para<br><em>seguir jugando.</em></h2></div>
+      <p>Actualizaciones y actividades que vale la pena tener en el radar.</p>
+    </header>
+    <div class="news-grid">
+      <article class="featured-news">
+        <div class="news-image"><img src="assets/noticia-entrada.jpg" alt="Entrada y zona de juegos de ReMicos Sogamoso" loading="lazy"><span>Destacado</span></div>
+        <div class="news-copy"><time datetime="2026-09-18">18 SEP 2026</time><h3>Una nueva aventura está por comenzar</h3><p>Preparamos una experiencia especial para que los más pequeños exploren, creen y compartan a su manera.</p><a href="#visitanos">Conoce ReMicos <span aria-hidden="true">↗</span></a></div>
+      </article>
+      <div class="news-list">
+        <article><time datetime="2026-09-12">12 SEP</time><div><p>Actividad</p><h3>Tarde de juegos en familia</h3><span>Cupos por confirmar</span></div><span aria-hidden="true">↗</span></article>
+        <article><time datetime="2026-09-05">05 SEP</time><div><p>Comunidad</p><h3>Consejos para una visita feliz</h3><span>3 minutos de lectura</span></div><span aria-hidden="true">↗</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit section" id="visitanos">
+    <header class="visit-heading"><p class="eyebrow"><span class="eyebrow-line"></span> PLANEA TU VISITA</p><h2>Nos vemos <em>en ReMicos.</em></h2></header>
+    <div class="visit-grid">
+      <article class="visit-card hours-card">
+        <span class="card-index">01 / HORARIO</span>
+        <div class="live-status" data-open-status><span class="status-dot"></span><strong data-status-message>Abierto ahora</strong></div>
+        <p>Todos los días, incluidos festivos</p>
+        <strong class="big-time">10:00 <span>a. m.</span><br>7:30 <span>p. m.</span></strong>
+        <small>Hora de Colombia</small>
+      </article>
+      <article class="visit-card prices-card">
+        <span class="card-index">02 / PRECIOS</span>
+        <h3>Elige tu tiempo<br>de juego</h3>
+        <div class="price-list" aria-label="Precios de ingreso">
+          <div><span>15 minutos</span><strong>$7.000</strong></div>
+          <div><span>30 minutos</span><strong>$10.000</strong></div>
+          <div><span>1 hora</span><strong>$15.000</strong></div>
+        </div>
+        <p>¿Tienes dudas sobre tu visita?</p>
+        <a href="https://wa.me/573175027179?text=Hola%20ReMicos%2C%20quiero%20conocer%20los%20precios." target="_blank" rel="noopener">Pregúntanos por WhatsApp <span aria-hidden="true">↗</span></a>
+      </article>
+      <article class="visit-card map-card">
+        <div class="map-head"><span class="card-index">03 / UBICACIÓN</span><strong>ReMicos Sogamoso</strong></div>
+        <iframe title="Mapa interactivo de ReMicos Sogamoso" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2649.66304312356!2d-72.93061303623767!3d5.718387824767646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a456b436de1bb%3A0xc141f7ba807ec04c!2sRemicos%20Sogamoso!5e0!3m2!1ses-419!2sco!4v1790199006017!5m2!1ses-419!2sco" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <a href="https://www.google.com/maps/place/Remicos+Sogamoso/@5.7176152,-72.9270635,21z/data=!4m6!3m5!1s0x8e6a456b436de1bb:0xc141f7ba807ec04c!8m2!3d5.7176887!4d-72.9269397!16s%2Fg%2F11pcv_s37n" target="_blank" rel="noopener">Cómo llegar <span aria-hidden="true">↗</span></a>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <img src="assets/logo-cubos.png" alt="ReMicos">
+    <p>Más juego. Más historias.</p>
+    <span>© ReMicos 2026</span>
+  </footer>
+
+  <div class="chat-backdrop" data-chat-close hidden></div>
+  <section class="chat-window" role="dialog" aria-modal="true" aria-labelledby="chat-title" hidden>
+    <header><div class="chat-avatar">R</div><div><strong id="chat-title">Habla con ReMicos</strong><span>WhatsApp · 317 502 7179</span></div><button type="button" data-chat-close aria-label="Cerrar ventana">×</button></header>
+    <div class="chat-body">
+      <p class="chat-greeting">¡Hola! 👋 Cuéntanos qué necesitas y abriremos tu mensaje en WhatsApp.</p>
+      <div class="chat-suggestions">
+        <button type="button" data-message="Hola ReMicos, quiero conocer los precios y planes.">Precios y planes</button>
+        <button type="button" data-message="Hola ReMicos, quiero información para visitar el parque.">Planear visita</button>
+        <button type="button" data-message="Hola ReMicos, quiero información sobre celebraciones.">Celebraciones</button>
+      </div>
+    </div>
+    <div class="chat-compose"><label for="chat-message">Tu mensaje</label><textarea id="chat-message" rows="2" maxlength="500" placeholder="Escribe aquí..."></textarea><a id="chat-send" href="https://wa.me/573175027179" target="_blank" rel="noopener">Abrir conversación en WhatsApp <span aria-hidden="true">↗</span></a></div>
+  </section>
+  <button class="chat-fab" type="button" data-chat-open aria-label="Abrir ventana de contacto por WhatsApp"><span>Hablemos</span><b aria-hidden="true">✦</b></button>
+</main>
+</body>
+</html>

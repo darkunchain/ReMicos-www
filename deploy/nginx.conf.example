@@ -1,0 +1,32 @@
+# Activar solo después de obtener un certificado para los dos nombres.
+server {
+    listen 80;
+    server_name remicos.com.co www.remicos.com.co;
+    return 301 https://www.remicos.com.co$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name remicos.com.co;
+    ssl_certificate /etc/letsencrypt/live/www.remicos.com.co/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.remicos.com.co/privkey.pem;
+    return 301 https://www.remicos.com.co$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name www.remicos.com.co;
+    ssl_certificate /etc/letsencrypt/live/www.remicos.com.co/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/www.remicos.com.co/privkey.pem;
+
+    root /srv/remicos/www;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ /\. {
+        deny all;
+    }
+}
