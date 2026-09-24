@@ -1,6 +1,10 @@
-# Fragmento para evaluar dentro del bloque HTTPS de www.remicos.com.co.
-# No instalar sin validar el servicio, el certificado, los permisos y nginx -t.
+# Solo rutas PUBLICAS para el bloque HTTPS de www.remicos.com.co.
+# El panel /admin/ NO debe exponerse aqui: usar nginx-news-wg.conf.example.
+# Validar el servicio, el certificado, los permisos y nginx -t primero.
 # El proceso Node debe escuchar SOLO en 127.0.0.1:4401.
+
+location = /admin { return 404; }
+location ^~ /admin/ { return 404; }
 
 location = /api/news {
     proxy_pass http://127.0.0.1:4401;
@@ -10,19 +14,6 @@ location = /api/news {
 }
 
 location ^~ /api/news/media/ {
-    proxy_pass http://127.0.0.1:4401;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-Proto https;
-}
-
-location = /admin {
-    return 308 /admin/;
-}
-
-location ^~ /admin/ {
-    # MP4 hasta 25 MB; revisar también SecRequestBodyLimit en ModSecurity.
-    client_max_body_size 26m;
     proxy_pass http://127.0.0.1:4401;
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;

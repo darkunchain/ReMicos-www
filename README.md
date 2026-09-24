@@ -59,18 +59,19 @@ y guardar datos privados en `/var/lib/remicos-www`, fuera de `/var/www`. En
 producción, el hash de la contraseña se entrega como credencial privada de
 systemd llamada `admin-password-hash` mediante `LoadCredential=`; no se coloca
 en variables de entorno ni en el repositorio. El proceso debe escuchar en
-`127.0.0.1:4401`; Nginx expondrá
-solo `/admin/`, `/api/news` y los recursos publicados. En producción se requiere
+`127.0.0.1:4401`; Nginx expondrá en Internet solo `/api/news` y los recursos
+publicados. El panel `/admin/` se sirve únicamente por la dirección WireGuard
+`10.99.99.10`, según `deploy/nginx-news-wg.conf.example`. En producción se requiere
 `NODE_ENV=production` y `REMICOS_NEWS_ORIGIN=https://www.remicos.com.co`.
 
 El panel usa cookie `Secure`, `HttpOnly`, `SameSite=Strict`, sesión de 8 horas,
 token CSRF, comprobación de origen y límite de intentos de acceso. Deben
 mantenerse HTTPS, ModSecurity y las cabeceras de seguridad existentes. El
-proxy debe aceptar hasta 26 MB en `/admin/`, y el límite de cuerpo de
+proxy privado debe aceptar hasta 26 MB en `/admin/`, y el límite de cuerpo de
 ModSecurity debe revisarse antes de intentar subir MP4. La política CSP de la
 portada debe permitir `frame-src` para `www.youtube-nocookie.com`,
 `player.vimeo.com` y el mapa de Google, además de `media-src 'self'`. El
-fragmento de rutas está en `deploy/nginx-news-locations.example`; **no sustituye
+fragmento de rutas públicas está en `deploy/nginx-news-locations.example`; **no sustituye
 la configuración activa de Nginx**. El archivo `deploy/nginx.conf.example` es
 solo un aviso para evitar copiar una plantilla obsoleta.
 

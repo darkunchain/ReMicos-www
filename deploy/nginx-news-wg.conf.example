@@ -1,0 +1,65 @@
+# Sitio privado: habilitar solo tras verificar que wg0 tiene 10.99.99.10/24.
+# Se usa deliberadamente un nombre interno, no www.remicos.com.co, para que
+# Certbot siga validando y renovando www mediante el bloque HTTP publico.
+# En clientes WireGuard, www.remicos.com.co debe resolver a 10.99.99.10.
+
+server {
+    listen 10.99.99.10:443 ssl default_server;
+    http2 on;
+    server_name remicos-wg.internal;
+    server_tokens off;
+
+    ssl_certificate /etc/letsencrypt/live/remicos.com.co/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/remicos.com.co/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    modsecurity on;
+    modsecurity_rules_file /etc/nginx/modsecurity_includes.conf;
+
+    # Capa adicional: solo direcciones de la subred WireGuard.
+    allow 10.99.99.0/24;
+    deny all;
+
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "no-referrer" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()" always;
+
+    root /var/www/remicos-www-2026-09-23;
+    index index.html;
+
+    location = /api/news {
+        proxy_pass http://127.0.0.1:4401;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location ^~ /api/news/media/ {
+        proxy_pass http://127.0.0.1:4401;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location = /admin {
+        return 308 /admin/;
+    }
+
+    location ^~ /admin/ {
+        client_max_body_size 26m;
+        proxy_pass http://127.0.0.1:4401;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~* /\.(git|hg|svn|bzr) { deny all; }
+    location ~* \.(env|ini|log|conf|bak|swp)$ { deny all; }
+    location ~* \.php($|/) { return 404; }
+}
