@@ -79,6 +79,13 @@
         <span class="photo-arrow" aria-hidden="true">↗</span>
       </button>
     </div>
+    <div class="moments-video">
+      <div class="moments-video-copy"><span>EN MOVIMIENTO</span><h3>ReMicos se vive <em>jugando.</em></h3><p>Un vistazo en video a la alegría de compartir y descubrir juntos.</p></div>
+      <video controls preload="metadata" playsinline poster="assets/galeria-juego.jpg" aria-label="Video de momentos en ReMicos">
+        <source src="assets/Remicos-toca.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+    </div>
   </section>
 
   <section class="news section" id="novedades">
@@ -86,15 +93,8 @@
       <div><p class="eyebrow"><span class="eyebrow-line"></span> LO NUEVO</p><h2>Noticias para<br><em>seguir jugando.</em></h2></div>
       <p>Actualizaciones y actividades que vale la pena tener en el radar.</p>
     </header>
-    <div class="news-grid">
-      <article class="featured-news">
-        <div class="news-image"><img src="assets/noticia-entrada.jpg" alt="Entrada y zona de juegos de ReMicos Sogamoso" loading="lazy"><span>Destacado</span></div>
-        <div class="news-copy"><time datetime="2026-09-18">18 SEP 2026</time><h3>Una nueva aventura está por comenzar</h3><p>Preparamos una experiencia especial para que los más pequeños exploren, creen y compartan a su manera.</p><a href="#visitanos">Conoce ReMicos <span aria-hidden="true">↗</span></a></div>
-      </article>
-      <div class="news-list">
-        <article><time datetime="2026-09-12">12 SEP</time><div><p>Actividad</p><h3>Tarde de juegos en familia</h3><span>Cupos por confirmar</span></div><span aria-hidden="true">↗</span></article>
-        <article><time datetime="2026-09-05">05 SEP</time><div><p>Comunidad</p><h3>Consejos para una visita feliz</h3><span>3 minutos de lectura</span></div><span aria-hidden="true">↗</span></article>
-      </div>
+    <div class="news-grid" data-news-grid aria-live="polite">
+      <p class="news-empty">Pronto compartiremos nuevas historias y actividades para disfrutar en familia.</p>
     </div>
   </section>
 

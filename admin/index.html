@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Noticias · ReMicos</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="/admin/admin.css">
+  <script src="/admin/admin.js" type="module"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Ir al sitio público de ReMicos">Re<span>Micos</span><i></i></a>
+    <div class="top-actions"><span>Gestor de noticias</span><button id="logout" type="button" hidden>Salir</button></div>
+  </header>
+
+  <main>
+    <section id="login-view" class="login-card" hidden>
+      <p class="eyebrow">ADMINISTRACIÓN</p>
+      <h1>Las buenas noticias<br><em>empiezan aquí.</em></h1>
+      <p class="intro">Ingresa con la cuenta de administración del sitio web.</p>
+      <form id="login-form">
+        <label>Usuario<input name="username" autocomplete="username" required maxlength="80"></label>
+        <label>Contraseña<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary" type="submit">Ingresar <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="feedback" id="login-feedback" role="alert"></p>
+    </section>
+
+    <div id="editor-view" hidden>
+      <div class="page-heading">
+        <div><p class="eyebrow">CONTENIDO DEL SITIO</p><h1>Noticias para <em>seguir jugando.</em></h1><p>Prepara un borrador y publícalo cuando esté listo.</p></div>
+        <a href="/#novedades" target="_blank" rel="noopener">Ver en la portada <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="workspace">
+        <section class="editor-card" aria-labelledby="editor-title">
+          <div class="section-title"><span>01 / EDITOR</span><h2 id="editor-title">Nueva noticia</h2></div>
+          <form id="news-form">
+            <label>Título<input id="news-title" name="title" required maxlength="120" placeholder="Ej. ¡Llegó una nueva aventura!"></label>
+            <label>Fecha<input id="news-date" name="date" type="date" required></label>
+            <label>Mensaje<textarea id="news-message" name="message" required maxlength="2000" rows="7" placeholder="Cuéntales a las familias qué está pasando..."></textarea></label>
+            <label>Foto <small>Opcional · JPG, PNG o WebP · máximo 5 MB</small><input id="news-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
+            <img id="photo-preview" class="photo-preview" alt="Vista previa de la foto" hidden>
+            <button id="remove-photo" class="remove-photo" type="button" hidden>Quitar foto</button>
+            <p class="media-hint">Puedes elegir una foto, un video MP4 o un enlace de YouTube/Vimeo.</p>
+            <label>Video MP4 <small>Opcional · máximo 25 MB y 2 minutos</small><input id="news-video" name="video" type="file" accept="video/mp4"></label>
+            <video id="video-preview" class="video-preview" controls preload="metadata" playsinline hidden></video>
+            <label>O enlace de YouTube / Vimeo <input id="news-video-url" name="videoUrl" type="url" inputmode="url" placeholder="https://youtu.be/…"></label>
+            <button id="remove-video" class="remove-photo" type="button" hidden>Quitar video</button>
+            <div class="form-footer">
+              <label>Estado<select id="news-status" name="status"><option value="draft">Borrador</option><option value="published">Publicada</option></select></label>
+              <div class="form-actions"><button id="reset-form" type="button">Nueva</button><button class="primary" type="submit">Guardar noticia</button></div>
+            </div>
+          </form>
+          <p class="feedback" id="editor-feedback" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="list-card" aria-labelledby="list-title">
+          <div class="section-title"><span>02 / PUBLICACIONES</span><h2 id="list-title">Tus noticias</h2></div>
+          <div id="news-list" class="news-list" aria-live="polite"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

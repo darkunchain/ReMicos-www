@@ -1,46 +1,87 @@
 # ReMicos-www
 
-Sitio público independiente de la aplicación de operación `remicos-app-2026`.
-Es una web estática sin dependencias de Node, base de datos ni API: puede
-servirse directamente con Nginx.
+Sitio público independiente de `remicos-app-2026`. La portada es estática y el
+gestor de noticias es un proceso Node pequeño, separado de la app de operación.
 
-## Vista local
+## Estado
 
-Desde esta carpeta:
+La versión publicada en Debian aún usa noticias de demostración. El gestor está
+en desarrollo local: **no publicar el panel ni cambiar Nginx antes de probarlo en
+el servidor y revisar los permisos**. No existe una contraseña predeterminada ni
+se guarda ninguna clave en Git.
+
+## Desarrollo local
+
+Se requiere Node.js 20.9 o superior y pnpm. Desde esta carpeta:
 
 ```sh
-python3 -m http.server 4300
+pnpm install --frozen-lockfile
 ```
 
-En Windows también sirve `python -m http.server 4300`. Abrir
-`http://localhost:4300/`. No abrir el archivo HTML directamente: un servidor
-local reproduce mejor las rutas que usará Nginx.
+Generar un hash para una contraseña de prueba de al menos 16 caracteres pasando
+la contraseña por la entrada estándar de `pnpm password:hash`. Configurar
+`REMICOS_NEWS_ADMIN_PASSWORD_HASH` con ese resultado. Después iniciar el gestor:
 
-## Publicación en Debian
+```sh
+pnpm start
+```
 
-1. Crear el repositorio GitHub `darkunchain/ReMicos-www` y subir este proyecto.
-2. Clonarlo en `/srv/remicos/www`, con permiso de lectura para Nginx.
-3. Configurar DNS para `www.remicos.com.co` y `remicos.com.co`, y obtener un
-   certificado HTTPS válido para **ambos** nombres.
-4. Adaptar e instalar [`deploy/nginx.conf.example`](deploy/nginx.conf.example).
-   Validar con `sudo nginx -t` antes de recargar Nginx.
+La vista local se abre en `http://localhost:4401/` y el panel en
+`http://localhost:4401/admin/`. El proceso solo escucha en loopback. En modo de
+desarrollo los datos se guardan en `data/`, carpeta excluida de Git.
 
-`https://www.remicos.com.co` es la dirección principal. La dirección sin `www`
-y las dos versiones HTTP redirigen hacia ella.
+## Modelo de publicación
 
-Para actualizar, hacer `git pull --ff-only` en `/srv/remicos/www` y recargar
-Nginx si cambió su configuración. No se ejecutan migraciones ni procesos Node
-en este sitio.
+- El panel permite crear y editar noticias con título, fecha, mensaje y un
+  recurso opcional: foto, MP4 o enlace de YouTube/Vimeo. Solo uno por noticia.
+- La portada consulta `GET /api/news`, que entrega únicamente noticias
+  publicadas. Las fotos de borradores requieren sesión.
+- Se aceptan JPG, PNG y WebP de hasta 5 MB. El servidor comprueba el formato,
+  limita los píxeles, convierte a WebP y descarta los metadatos de origen.
+- Los MP4 se limitan a 25 MB y se normalizan con FFmpeg a H.264/AAC, 720p y
+  máximo 2 minutos. Se necesitan `ffmpeg` y `ffprobe` instalados en el servidor
+  o sus rutas absolutas en `REMICOS_NEWS_FFMPEG` y `REMICOS_NEWS_FFPROBE`;
+  sin ello la carga devuelve un error claro.
+- Los enlaces externos solo admiten YouTube/Vimeo por HTTPS y se convierten a
+  URL de reproducción autorizada; no se aceptan códigos HTML para incrustar.
+- El texto se muestra como texto, no como HTML; no se permiten etiquetas ni
+  scripts en las noticias.
+- No hay borrado definitivo desde el panel: una noticia puede volver a borrador.
 
-## Contenido y límites actuales
+## Seguridad y despliegue futuro
+
+Antes de publicar el gestor, crear un usuario de sistema exclusivo para el
+servicio, instalar el código ejecutable como solo lectura en `/opt/remicos-www`,
+y guardar datos privados en `/var/lib/remicos-www`, fuera de `/var/www`. El hash
+de la contraseña debe ir en un archivo de entorno de acceso restringido, fuera
+del repositorio. El proceso debe escuchar en `127.0.0.1:4401`; Nginx expondrá
+solo `/admin/`, `/api/news` y los recursos publicados. En producción se requiere
+`NODE_ENV=production` y `REMICOS_NEWS_ORIGIN=https://www.remicos.com.co`.
+
+El panel usa cookie `Secure`, `HttpOnly`, `SameSite=Strict`, sesión de 8 horas,
+token CSRF, comprobación de origen y límite de intentos de acceso. Deben
+mantenerse HTTPS, ModSecurity y las cabeceras de seguridad existentes. El
+proxy debe aceptar hasta 26 MB en `/admin/`, y el límite de cuerpo de
+ModSecurity debe revisarse antes de intentar subir MP4. La política CSP de la
+portada debe permitir `frame-src` para `www.youtube-nocookie.com`,
+`player.vimeo.com` y el mapa de Google, además de `media-src 'self'`. El
+fragmento de rutas está en `deploy/nginx-news-locations.example`; **no sustituye
+la configuración activa de Nginx**. El archivo `deploy/nginx.conf.example` es
+solo un aviso para evitar copiar una plantilla obsoleta.
+
+Para actualizar la portada, no servir el repositorio completo desde Nginx:
+publicar únicamente `index.html`, `styles.css`, `app.js` y `assets/` en el
+directorio estático raíz, como ya se hizo en Debian. No publicar `admin/`,
+`node_modules/`, `data/` ni archivos de entorno en esa raíz.
+
+## Datos vigentes del sitio
 
 - Horario: todos los días, incluidos festivos, 10:00 a. m.–7:30 p. m.
-- Tarifas de ingreso: 15 min $7.000, 30 min $10.000, 1 h $15.000 COP.
-- WhatsApp: se redacta el mensaje aquí y la conversación se abre en WhatsApp.
+- Tarifas: 15 min $7.000, 30 min $10.000 y 1 h $15.000 COP.
+- WhatsApp: el visitante redacta el mensaje y la conversación se abre en
+  WhatsApp; no es un chat interno.
 - Mapa: incrustación oficial proporcionada por ReMicos.
-- Noticias: contenido de demostración; aún no existe un gestor de publicaciones.
 
-Los archivos `assets/galeria-*.jpg` contienen fotografías reales. Antes de
-publicar el repositorio, confirmar que se cuenta con autorización de uso de
-imagen de las personas que aparecen en ellas. Las fotos originales no usadas
-por la portada permanecen fuera de este proyecto.
+Los archivos `assets/galeria-*.jpg` contienen fotografías reales. Verificar
+siempre la autorización de uso de imagen de las personas que aparezcan,
+especialmente menores, antes de publicar una foto nueva.

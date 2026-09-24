@@ -1,0 +1,17 @@
+{
+  "name": "remicos-www",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "start": "node admin/server.js",
+    "password:hash": "node admin/hash-password.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "sharp": "0.35.4"
+  }
+}
