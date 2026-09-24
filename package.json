@@ -11,7 +11,7 @@
     "password:hash": "node admin/hash-password.js",
     "test": "node --test"
   },
-  "dependencies": {
+  "devDependencies": {
     "sharp": "0.35.4"
   }
 }

@@ -36,10 +36,13 @@ desarrollo los datos se guardan en `data/`, carpeta excluida de Git.
   recurso opcional: foto, MP4 o enlace de YouTube/Vimeo. Solo uno por noticia.
 - La portada consulta `GET /api/news`, que entrega únicamente noticias
   publicadas. Las fotos de borradores requieren sesión.
-- Se aceptan JPG, PNG y WebP de hasta 5 MB. El servidor comprueba el formato,
-  limita los píxeles, convierte a WebP y descarta los metadatos de origen.
-- Los MP4 se limitan a 25 MB y se normalizan con FFmpeg a H.264/AAC, 720p y
-  máximo 2 minutos. Se necesitan `ffmpeg` y `ffprobe` instalados en el servidor
+- Se aceptan JPG, PNG y WebP de hasta 5 MB. En Debian, FFmpeg comprueba el formato,
+  limita los píxeles, convierte a WebP y descarta los metadatos de origen. Esto
+  evita depender del binario de Sharp, incompatible con procesadores sin SSE4.2.
+- Los MP4 deben venir codificados en H.264/AAC (audio opcional), hasta 1080p,
+  25 MB y 2 minutos. FFmpeg recompone el contenedor y elimina metadatos sin
+  recodificar el video, adecuado para el procesador del servidor. Se necesitan
+  `ffmpeg` y `ffprobe` instalados en el servidor
   o sus rutas absolutas en `REMICOS_NEWS_FFMPEG` y `REMICOS_NEWS_FFPROBE`;
   sin ello la carga devuelve un error claro.
 - Los enlaces externos solo admiten YouTube/Vimeo por HTTPS y se convierten a

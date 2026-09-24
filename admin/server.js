@@ -6,7 +6,6 @@ import { isIP } from 'node:net';
 import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { promisify } from 'node:util';
-import sharp from 'sharp';
 import { NewsStore } from './store.js';
 
 const scrypt = promisify(scryptCallback);
@@ -147,6 +146,49 @@ function matchesImageSignature(input, type) {
   if (type === 'image/png') return input.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
   if (type === 'image/webp') return input.length >= 12 && input.toString('ascii', 0, 4) === 'RIFF' && input.toString('ascii', 8, 12) === 'WEBP';
   return false;
+}
+
+async function processImage(input, type) {
+  const formats = { 'image/jpeg': 'jpeg', 'image/png': 'png', 'image/webp': 'webp' };
+  if (process.platform === 'win32') {
+    const { default: sharp } = await import('sharp');
+    const processor = sharp(input, { limitInputPixels: 20_000_000, failOn: 'error' });
+    const metadata = await processor.metadata();
+    if (metadata.format !== formats[type] || (metadata.pages ?? 1) !== 1) throw new Error('Formato inválido.');
+    return processor.rotate().resize({ width: 1600, height: 1200, fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 82 }).toBuffer();
+  }
+
+  const id = randomUUID();
+  const extension = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[type];
+  const temporary = join(store.mediaDirectory, `.${id}.image-upload.${extension}`);
+  const outputPath = join(store.mediaDirectory, `.${id}.image-output.webp`);
+  try {
+    await writeFile(temporary, input, { mode: 0o600, flag: 'wx' });
+    const { stdout } = await runFile(ffprobe, [
+      '-v', 'error', '-protocol_whitelist', 'file', '-count_frames', '-select_streams', 'v:0',
+      '-show_entries', 'stream=codec_name,width,height,nb_read_frames', '-of', 'json', temporary,
+    ], { timeout: 15_000, maxBuffer: 1024 * 1024, windowsHide: true });
+    const stream = JSON.parse(stdout).streams?.[0];
+    const expectedCodec = { 'image/jpeg': 'mjpeg', 'image/png': 'png', 'image/webp': 'webp' }[type];
+    if (stream?.codec_name !== expectedCodec || !Number.isInteger(stream.width) || !Number.isInteger(stream.height) ||
+        stream.width < 1 || stream.height < 1 || stream.width * stream.height > 20_000_000 ||
+        Number(stream.nb_read_frames) !== 1) throw new Error('Formato o dimensiones inválidas.');
+    const factor = Math.min(1, 1600 / stream.width, 1200 / stream.height);
+    const targetWidth = Math.max(1, Math.floor(stream.width * factor));
+    const targetHeight = Math.max(1, Math.floor(stream.height * factor));
+    await runFile(ffmpeg, [
+      '-hide_banner', '-loglevel', 'error', '-nostdin', '-threads', '2', '-protocol_whitelist', 'file', '-i', temporary,
+      '-map', '0:v:0', '-frames:v', '1',
+      '-vf', `scale=${targetWidth}:${targetHeight}:flags=lanczos`,
+      '-c:v', 'libwebp', '-q:v', '82', '-compression_level', '4', '-map_metadata', '-1',
+      '-y', outputPath,
+    ], { timeout: 30_000, maxBuffer: 1024 * 1024, windowsHide: true });
+    return await readFile(outputPath);
+  } finally {
+    await unlink(temporary).catch(() => {});
+    await unlink(outputPath).catch(() => {});
+  }
 }
 
 function embedUrl(value) {
@@ -327,18 +369,14 @@ async function handle(request, response) {
     }
     if (method === 'POST' && pathname === '/admin/api/media') {
       const type = request.headers['content-type']?.split(';')[0];
-      const formats = { 'image/jpeg': 'jpeg', 'image/png': 'png', 'image/webp': 'webp' };
-      if (!formats[type]) throw error(415, 'Solo se aceptan imágenes JPG, PNG o WebP.');
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(type)) throw error(415, 'Solo se aceptan imágenes JPG, PNG o WebP.');
       const input = await bodyBuffer(request, 5 * 1024 * 1024);
       if (!matchesImageSignature(input, type)) throw error(400, 'La imagen no coincide con su formato.');
       let output;
       try {
-        const processor = sharp(input, { limitInputPixels: 20_000_000, failOn: 'error' });
-        const metadata = await processor.metadata();
-        if (metadata.format !== formats[type] || (metadata.pages ?? 1) !== 1) throw new Error('Formato inválido.');
-        output = await processor.rotate().resize({ width: 1600, height: 1200, fit: 'inside', withoutEnlargement: true })
-          .webp({ quality: 82 }).toBuffer();
-      } catch {
+        output = await processImage(input, type);
+      } catch (cause) {
+        if (cause.code === 'ENOENT') throw error(503, 'La carga de fotos requiere FFmpeg y FFprobe en el servidor.');
         throw error(400, 'La imagen está dañada o no coincide con su formato.');
       }
       if (output.length > 5 * 1024 * 1024) throw error(413, 'La imagen procesada es demasiado grande.');
@@ -355,14 +393,20 @@ async function handle(request, response) {
       const filename = `${id}.mp4`;
       try {
         await writeFile(temporary, input, { mode: 0o600, flag: 'wx' });
-        const { stdout } = await runFile(ffprobe, ['-v', 'error', '-show_entries', 'format=duration:stream=codec_type,width,height', '-of', 'json', temporary], { timeout: 10_000, maxBuffer: 1024 * 1024, windowsHide: true });
+        const { stdout } = await runFile(ffprobe, ['-v', 'error', '-protocol_whitelist', 'file', '-show_entries', 'format=duration:stream=codec_type,codec_name,width,height,pix_fmt', '-of', 'json', temporary], { timeout: 10_000, maxBuffer: 1024 * 1024, windowsHide: true });
         const probe = JSON.parse(stdout);
         const duration = Number(probe.format?.duration);
-        const video = probe.streams?.find((stream) => stream.codec_type === 'video');
-        if (!video || !Number.isFinite(duration) || duration < 1 || duration > 120 || video.width > 3840 || video.height > 2160) {
-          throw error(400, 'Usa un MP4 de 1 segundo a 2 minutos y resolución máxima 4K.');
+        const streams = probe.streams ?? [];
+        const video = streams.find((stream) => stream.codec_type === 'video');
+        const audio = streams.filter((stream) => stream.codec_type === 'audio');
+        if (!video || streams.filter((stream) => stream.codec_type === 'video').length !== 1 ||
+            audio.length > 1 || (audio.length && audio[0].codec_name !== 'aac') ||
+            video.codec_name !== 'h264' || video.pix_fmt !== 'yuv420p' ||
+            !Number.isFinite(duration) || duration < 1 || duration > 120 ||
+            video.width < 1 || video.height < 1 || video.width > 1920 || video.height > 1080) {
+          throw error(400, 'Usa un MP4 H.264/AAC, hasta 1080p, 25 MB y 2 minutos.');
         }
-        await runFile(ffmpeg, ['-hide_banner', '-loglevel', 'error', '-nostdin', '-threads', '2', '-i', temporary, '-map', '0:v:0', '-map', '0:a:0?', '-vf', 'scale=w=1280:h=720:force_original_aspect_ratio=decrease', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', '-map_metadata', '-1', '-y', join(store.mediaDirectory, filename)], { timeout: 90_000, maxBuffer: 1024 * 1024, windowsHide: true });
+        await runFile(ffmpeg, ['-hide_banner', '-loglevel', 'error', '-nostdin', '-protocol_whitelist', 'file', '-i', temporary, '-map', '0:v:0', '-map', '0:a:0?', '-c', 'copy', '-movflags', '+faststart', '-map_metadata', '-1', '-map_chapters', '-1', '-y', join(store.mediaDirectory, filename)], { timeout: 30_000, maxBuffer: 1024 * 1024, windowsHide: true });
         const output = await stat(join(store.mediaDirectory, filename));
         if (!output.size || output.size > maxVideoBytes) throw error(413, 'El video procesado supera 25 MB.');
       } catch (cause) {

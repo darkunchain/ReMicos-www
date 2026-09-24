@@ -1,15 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { randomBytes, scrypt as scryptCallback } from 'node:crypto';
-import { mkdtemp, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { promisify } from 'node:util';
-import sharp from 'sharp';
 
 const scrypt = promisify(scryptCallback);
+const runFile = promisify(execFile);
 const password = 'Prueba-local-no-usar-2026!';
 
 async function freePort() {
@@ -83,7 +83,7 @@ test('panel, publicación y carga de imágenes', { timeout: 40_000 }, async (t) 
   assert.equal((await get('/api/news')).status, 200);
   assert.deepEqual(await (await get('/api/news')).json(), []);
 
-  const png = await sharp({ create: { width: 20, height: 20, channels: 3, background: '#ff3366' } }).png().toBuffer();
+  const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAIAAAAC64paAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAIElEQVQ4jWP4b5xGNmIY1Zw2GmBpo4kkbTRjpA1cYQAAV+R9nxH4cEMAAAAASUVORK5CYII=', 'base64');
   const uploaded = await fetch(`${base}/admin/api/media`, {
     method: 'POST', body: png,
     headers: { Origin: base, ...authenticated, 'Content-Type': 'image/png' },
@@ -108,9 +108,15 @@ test('panel, publicación y carga de imágenes', { timeout: 40_000 }, async (t) 
   const imageResponse = await get(publicItems[0].imageUrl);
   assert.equal(imageResponse.status, 200);
   assert.equal(imageResponse.headers.get('content-type'), 'image/webp');
-  const metadata = await sharp(Buffer.from(await imageResponse.arrayBuffer())).metadata();
-  assert.equal(metadata.format, 'webp');
-  assert.equal(metadata.exif, undefined);
+  const imageBytes = Buffer.from(await imageResponse.arrayBuffer());
+  assert.equal(imageBytes.toString('ascii', 0, 4), 'RIFF');
+  assert.equal(imageBytes.toString('ascii', 8, 12), 'WEBP');
+  assert.equal(imageBytes.includes(Buffer.from('EXIF')), false);
+  const webpUpload = await fetch(`${base}/admin/api/media`, {
+    method: 'POST', body: imageBytes,
+    headers: { Origin: base, ...authenticated, 'Content-Type': 'image/webp' },
+  });
+  assert.equal(webpUpload.status, 201, await webpUpload.text());
 
   const linked = await post('/admin/api/news', {
     title: 'Video de la semana', date: '2026-09-25', message: 'Mira la nueva aventura.', status: 'published',
@@ -132,6 +138,27 @@ test('panel, publicación y carga de imágenes', { timeout: 40_000 }, async (t) 
   assert.equal((await fetch(`${base}/admin/api/video`, {
     method: 'POST', body: '<svg></svg>', headers: { Origin: base, ...authenticated, 'Content-Type': 'video/mp4' },
   })).status, 400);
+
+  if (process.platform !== 'win32') {
+    const fixture = join(directory, 'fixture.mp4');
+    await runFile('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-f', 'lavfi', '-i', 'color=c=red:s=64x64:d=1',
+      '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-an', '-y', fixture], { timeout: 20_000 });
+    const videoUpload = await fetch(`${base}/admin/api/video`, {
+      method: 'POST', body: await readFile(fixture),
+      headers: { Origin: base, ...authenticated, 'Content-Type': 'video/mp4' },
+    });
+    const uploadBody = await videoUpload.json();
+    assert.equal(videoUpload.status, 201, JSON.stringify(uploadBody));
+    const { videoId } = uploadBody;
+    assert.equal((await get(`/api/news/media/${videoId}`)).status, 404);
+    const videoNews = await post('/admin/api/news', {
+      title: 'Video de prueba', date: '2026-09-26', message: 'Video corto para probar.', status: 'published', videoId,
+    }, authenticated);
+    assert.equal(videoNews.status, 201);
+    const videoResponse = await get(`/api/news/media/${videoId}`, { Range: 'bytes=0-31' });
+    assert.equal(videoResponse.status, 206);
+    assert.equal(videoResponse.headers.get('content-type'), 'video/mp4');
+  }
 
   const logout = await post('/admin/api/logout', '{}', authenticated);
   assert.equal(logout.status, 200);
