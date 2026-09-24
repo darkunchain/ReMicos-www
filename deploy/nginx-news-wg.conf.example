@@ -47,8 +47,38 @@ server {
         return 308 /admin/;
     }
 
-    location ^~ /admin/ {
+    # Solo estas dos rutas reciben archivos binarios. El gestor comprueba
+    # después el tipo, la firma, las dimensiones, la duración y el tamaño.
+    # Se excluye únicamente la política de Content-Type de CRS (920420);
+    # el resto de ModSecurity permanece activo.
+    location = /admin/api/media {
+        client_max_body_size 6m;
+        modsecurity_rules '
+            SecRuleRemoveById 920420
+            SecRequestBodyLimit 6291456
+            SecRequestBodyNoFilesLimit 6291456
+        ';
+        proxy_pass http://127.0.0.1:4401;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location = /admin/api/video {
         client_max_body_size 26m;
+        modsecurity_rules '
+            SecRuleRemoveById 920420
+            SecRequestBodyLimit 27262976
+            SecRequestBodyNoFilesLimit 27262976
+        ';
+        proxy_pass http://127.0.0.1:4401;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+
+    location ^~ /admin/ {
+        client_max_body_size 64k;
         proxy_pass http://127.0.0.1:4401;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
