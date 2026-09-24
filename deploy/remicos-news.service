@@ -1,0 +1,45 @@
+[Unit]
+Description=ReMicos public news manager
+After=network.target
+ConditionPathExists=/opt/remicos-www/admin/server.js
+
+[Service]
+Type=simple
+User=remicos-news
+Group=remicos-news
+WorkingDirectory=/opt/remicos-www
+ExecStart=/usr/local/lib/nodejs/node-v24.21.0-linux-x64/bin/node /opt/remicos-www/admin/server.js
+Environment=NODE_ENV=production
+Environment=REMICOS_NEWS_ORIGIN=https://www.remicos.com.co
+Environment=REMICOS_NEWS_DATA_DIR=/var/lib/remicos-www
+Environment=REMICOS_NEWS_HOST=127.0.0.1
+Environment=REMICOS_NEWS_PORT=4401
+Environment=REMICOS_NEWS_FFMPEG=/usr/bin/ffmpeg
+Environment=REMICOS_NEWS_FFPROBE=/usr/bin/ffprobe
+LoadCredential=admin-password-hash:/etc/remicos-news.hash
+UMask=0077
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/remicos-www
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+RestrictSUIDSGID=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+LimitCORE=0
+MemoryHigh=512M
+MemoryMax=768M
+TasksMax=32
+
+[Install]
+WantedBy=multi-user.target
