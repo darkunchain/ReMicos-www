@@ -97,7 +97,7 @@ test('panel, publicación y carga de imágenes', { timeout: 40_000 }, async (t) 
   })).status, 400);
 
   const published = await fetch(`${base}/admin/api/news/${saved.id}`, {
-    method: 'PUT',
+    method: 'POST',
     body: JSON.stringify({ title: saved.title, date: saved.date, message: saved.message, status: 'published', imageId }),
     headers: { Origin: base, ...authenticated, 'Content-Type': 'application/json' },
   });

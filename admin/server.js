@@ -361,7 +361,7 @@ async function handle(request, response) {
       return reply(response, 201, item);
     }
     const newsMatch = pathname.match(/^\/admin\/api\/news\/([0-9a-f-]{36})$/);
-    if (method === 'PUT' && newsMatch) {
+    if (method === 'POST' && newsMatch) {
       const input = await newsInput(await jsonBody(request));
       const updated = await store.mutate((items) => {
         const item = items.find((entry) => entry.id === newsMatch[1]);

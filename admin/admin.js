@@ -33,6 +33,11 @@ async function request(path, options = {}) {
     ...options,
     headers: { ...(options.body && !(options.body instanceof File) ? { 'Content-Type': 'application/json' } : {}), ...(csrf && options.method && options.method !== 'GET' ? { 'X-CSRF-Token': csrf } : {}), ...options.headers },
   });
+  if (!response.headers.get('content-type')?.includes('application/json')) {
+    if (response.status === 413) throw new Error('El archivo supera el tamaño permitido por el servidor.');
+    if (response.status === 403) throw new Error('La protección del sitio bloqueó esta solicitud. Informa al administrador.');
+    throw new Error(`El servidor devolvió una respuesta inesperada (HTTP ${response.status}).`);
+  }
   const result = await response.json();
   if (!response.ok) throw new Error(result.error ?? 'No fue posible completar la operación.');
   return result;
@@ -213,7 +218,7 @@ newsForm.addEventListener('submit', async (event) => {
       nextVideoId = uploaded.videoId;
     }
     await request(editingId ? `/admin/api/news/${editingId}` : '/admin/api/news', {
-      method: editingId ? 'PUT' : 'POST',
+      method: 'POST',
       body: JSON.stringify({
         title: newsForm.elements.title.value,
         date: newsForm.elements.date.value,
