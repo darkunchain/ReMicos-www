@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFile, spawn } from 'node:child_process';
 import { randomBytes, scrypt as scryptCallback } from 'node:crypto';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -163,4 +163,51 @@ test('panel, publicación y carga de imágenes', { timeout: 40_000 }, async (t) 
   const logout = await post('/admin/api/logout', '{}', authenticated);
   assert.equal(logout.status, 200);
   assert.equal((await get('/admin/api/news', { Cookie: cookie })).status, 401);
+});
+
+test('producción toma el hash de una credencial privada, no del entorno', { timeout: 15_000 }, async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'remicos-news-credential-'));
+  const port = await freePort();
+  const base = `http://127.0.0.1:${port}`;
+  const salt = randomBytes(32);
+  const hash = await scrypt(password, salt, 64, { N: 65536, r: 8, p: 1, maxmem: 128 * 1024 * 1024 });
+  await writeFile(join(directory, 'admin-password-hash'), `scrypt:65536:8:1:${salt.toString('base64url')}:${hash.toString('base64url')}\n`, { mode: 0o600 });
+  const child = spawn(process.execPath, ['admin/server.js'], {
+    cwd: new URL('..', import.meta.url),
+    env: {
+      ...process.env,
+      NODE_ENV: 'production',
+      CREDENTIALS_DIRECTORY: directory,
+      REMICOS_NEWS_ADMIN_PASSWORD_HASH: 'valor-inseguro-que-debe-ignorarse',
+      REMICOS_NEWS_DATA_DIR: join(directory, 'data'),
+      REMICOS_NEWS_PORT: String(port),
+      REMICOS_NEWS_ORIGIN: 'https://www.remicos.com.co',
+    },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let errors = '';
+  child.stderr.on('data', (chunk) => { errors += chunk; });
+  t.after(async () => {
+    if (child.exitCode === null && child.signalCode === null) {
+      child.kill();
+      await new Promise((resolve) => child.once('exit', resolve));
+    }
+    await rm(directory, { recursive: true, force: true });
+  });
+  let healthy = false;
+  for (let attempt = 0; attempt < 50; attempt++) {
+    try {
+      const response = await fetch(`${base}/healthz`);
+      if (response.ok) { healthy = true; break; }
+    } catch { /* Esperar el inicio del proceso. */ }
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  assert.equal(healthy, true, `El servicio de producción no inició: ${errors}`);
+  const login = await fetch(`${base}/admin/api/login`, {
+    method: 'POST',
+    body: JSON.stringify({ username: 'admin', password }),
+    headers: { Origin: 'https://www.remicos.com.co', 'Content-Type': 'application/json' },
+  });
+  assert.equal(login.status, 200);
+  assert.match(login.headers.get('set-cookie'), /__Host-remicos_news=.*; Secure/);
 });

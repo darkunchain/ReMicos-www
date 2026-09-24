@@ -55,9 +55,11 @@ desarrollo los datos se guardan en `data/`, carpeta excluida de Git.
 
 Antes de publicar el gestor, crear un usuario de sistema exclusivo para el
 servicio, instalar el código ejecutable como solo lectura en `/opt/remicos-www`,
-y guardar datos privados en `/var/lib/remicos-www`, fuera de `/var/www`. El hash
-de la contraseña debe ir en un archivo de entorno de acceso restringido, fuera
-del repositorio. El proceso debe escuchar en `127.0.0.1:4401`; Nginx expondrá
+y guardar datos privados en `/var/lib/remicos-www`, fuera de `/var/www`. En
+producción, el hash de la contraseña se entrega como credencial privada de
+systemd llamada `admin-password-hash` mediante `LoadCredential=`; no se coloca
+en variables de entorno ni en el repositorio. El proceso debe escuchar en
+`127.0.0.1:4401`; Nginx expondrá
 solo `/admin/`, `/api/news` y los recursos publicados. En producción se requiere
 `NODE_ENV=production` y `REMICOS_NEWS_ORIGIN=https://www.remicos.com.co`.
 

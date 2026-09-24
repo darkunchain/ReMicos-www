@@ -16,8 +16,12 @@ const host = process.env.REMICOS_NEWS_HOST ?? '127.0.0.1';
 const port = Number(process.env.REMICOS_NEWS_PORT ?? 4401);
 const origin = process.env.REMICOS_NEWS_ORIGIN ?? `http://localhost:${port}`;
 const username = process.env.REMICOS_NEWS_ADMIN_USER ?? 'admin';
-const passwordHash = process.env.REMICOS_NEWS_ADMIN_PASSWORD_HASH;
 const production = process.env.NODE_ENV === 'production';
+const passwordHash = production
+  ? (process.env.CREDENTIALS_DIRECTORY
+      ? (await readFile(join(process.env.CREDENTIALS_DIRECTORY, 'admin-password-hash'), 'utf8')).trim()
+      : undefined)
+  : process.env.REMICOS_NEWS_ADMIN_PASSWORD_HASH;
 const cookieName = production ? '__Host-remicos_news' : 'remicos_news_dev';
 const sessionLifetime = 8 * 60 * 60 * 1000;
 const sessions = new Map();
@@ -31,7 +35,7 @@ const ffprobe = process.env.REMICOS_NEWS_FFPROBE ?? 'ffprobe';
 const runFile = promisify(execFile);
 
 if (!passwordHash || !/^scrypt:65536:8:1:[A-Za-z0-9_-]+:[A-Za-z0-9_-]+$/.test(passwordHash)) {
-  throw new Error('Configura REMICOS_NEWS_ADMIN_PASSWORD_HASH con un hash válido.');
+  throw new Error(production ? 'Configura la credencial admin-password-hash de systemd.' : 'Configura REMICOS_NEWS_ADMIN_PASSWORD_HASH con un hash válido.');
 }
 if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('Puerto inválido.');
 if (!['127.0.0.1', '::1'].includes(host)) throw new Error('El servicio solo puede escuchar en loopback.');
