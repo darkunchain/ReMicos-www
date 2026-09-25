@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#123946">
+  <title>Página no encontrada · ReMicos</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-width: 320px; min-height: 100svh; margin: 0; color: #123946; background: #fff3dc; }
+    a { color: inherit; }
+    .page { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+    .topbar { padding: 1.4rem clamp(1.3rem, 5vw, 5rem); display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { color: #123946; font-size: 1.55rem; font-weight: 950; letter-spacing: -.075em; text-decoration: none; }
+    .brand span { color: #ee3c62; }
+    .topbar small { font-size: .72rem; font-weight: 800; letter-spacing: .16em; }
+    main { width: min(1200px, 100%); margin: auto; padding: 3rem clamp(1.3rem, 5vw, 5rem) 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .86fr); align-items: center; gap: clamp(2rem, 5vw, 6rem); }
+    .eyebrow { margin: 0 0 1.4rem; color: #007786; font-size: .82rem; font-weight: 900; letter-spacing: .14em; }
+    h1 { max-width: 10ch; margin: 0 0 1.3rem; font-size: clamp(3.4rem, 7vw, 6.8rem); font-weight: 950; letter-spacing: -.075em; line-height: .98; }
+    h1 em { color: #ee3c62; font-style: normal; }
+    .description { max-width: 33rem; margin: 0 0 2rem; color: #365b64; font-size: clamp(1rem, 1.7vw, 1.16rem); line-height: 1.65; }
+    .action { display: inline-flex; align-items: center; gap: 1.8rem; padding: 1rem 1.4rem; border-radius: 999px; color: #fff; background: #123946; box-shadow: 0 .45rem 0 #0c2933; font-weight: 850; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .action:hover, .action:focus-visible { transform: translateY(.2rem); box-shadow: 0 .25rem 0 #0c2933; }
+    .action:focus-visible { outline: 3px solid #ee3c62; outline-offset: 4px; }
+    .art { aspect-ratio: 1; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .art::before { content: ""; position: absolute; inset: 8%; border: 2px solid #ffffffa8; border-radius: 50%; }
+    .art::after { content: "✳"; position: absolute; top: 8%; right: 7%; color: #ee3c62; font-size: clamp(3rem, 7vw, 6rem); line-height: 1; animation: turn 12s linear infinite; }
+    .badge { width: 76%; aspect-ratio: 1; display: grid; place-items: center; position: relative; border: clamp(10px, 2vw, 22px) solid #fff; border-radius: 36%; background: #a5e9e0; box-shadow: 0 1.6rem 3.5rem #1239462b; transform: rotate(-10deg); animation: float 5s ease-in-out infinite; }
+    .badge strong { color: #123946; font-size: clamp(5rem, 14vw, 11rem); font-weight: 950; letter-spacing: -.14em; line-height: 1; transform: rotate(10deg) translateX(-.05em); }
+    .dot { width: 12%; aspect-ratio: 1; position: absolute; left: 1%; bottom: 17%; border-radius: 50%; background: #ee3c62; }
+    footer { padding: 1rem clamp(1.3rem, 5vw, 5rem) 1.6rem; color: #4c727b; font-size: .76rem; font-weight: 750; }
+    @keyframes float { 50% { transform: rotate(-7deg) translateY(-.6rem); } }
+    @keyframes turn { to { transform: rotate(360deg); } }
+    @media (max-width: 760px) { main { grid-template-columns: 1fr; padding-top: 1rem; text-align: center; } h1, .description { margin-left: auto; margin-right: auto; } .art { width: min(70vw, 340px); margin: auto; order: -1; } .topbar small { display: none; } footer { text-align: center; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar"><a class="brand" href="/" aria-label="ReMicos, ir al inicio">Re<span>Micos</span></a><small>JUGAR · EXPLORAR · COMPARTIR</small></header>
+    <main>
+      <div>
+        <p class="eyebrow">ERROR 404 / PÁGINA NO ENCONTRADA</p>
+        <h1>Por aquí <em>no era.</em></h1>
+        <p class="description">No encontramos la página que buscas. Puede que la dirección haya cambiado o que se haya escapado a jugar.</p>
+        <a class="action" href="/">Volver al inicio <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="art" aria-hidden="true"><div class="badge"><strong>404</strong></div><span class="dot"></span></div>
+    </main>
+    <footer>ReMicos · Un lugar para seguir jugando.</footer>
+  </div>
+</body>
+</html>
