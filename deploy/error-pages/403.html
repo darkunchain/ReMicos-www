@@ -24,16 +24,11 @@
     .action { display: inline-flex; align-items: center; gap: 1.8rem; padding: 1rem 1.4rem; border-radius: 999px; color: #fff; background: #123946; box-shadow: 0 .45rem 0 #0c2933; font-weight: 850; text-decoration: none; transition: transform .2s, box-shadow .2s; }
     .action:hover, .action:focus-visible { transform: translateY(.2rem); box-shadow: 0 .25rem 0 #0c2933; }
     .action:focus-visible { outline: 3px solid #ee3c62; outline-offset: 4px; }
-    .art { aspect-ratio: 1; position: relative; display: grid; place-items: center; isolation: isolate; }
-    .art::before { content: ""; position: absolute; inset: 8%; border: 2px solid #ffffffa8; border-radius: 50%; }
-    .art::after { content: "✳"; position: absolute; top: 8%; right: 7%; color: #ee3c62; font-size: clamp(3rem, 7vw, 6rem); line-height: 1; animation: turn 12s linear infinite; }
-    .badge { width: 76%; aspect-ratio: 1; display: grid; place-items: center; position: relative; border: clamp(10px, 2vw, 22px) solid #fff; border-radius: 36%; background: #ffd13d; box-shadow: 0 1.6rem 3.5rem #1239462b; transform: rotate(-10deg); animation: float 5s ease-in-out infinite; }
-    .badge strong { color: #123946; font-size: clamp(5rem, 14vw, 11rem); font-weight: 950; letter-spacing: -.14em; line-height: 1; transform: rotate(10deg) translateX(-.05em); }
-    .dot { width: 12%; aspect-ratio: 1; position: absolute; left: 1%; bottom: 17%; border-radius: 50%; background: #ee3c62; }
+    .art { min-width: 0; position: relative; display: grid; place-items: center; }
+    .art::before { content: ""; width: 75%; aspect-ratio: 1; position: absolute; z-index: -1; border: 2px solid #ffffffa8; border-radius: 50%; }
+    .art img { width: min(100%, 490px); max-height: 75svh; display: block; object-fit: contain; filter: drop-shadow(0 1.2rem 1.3rem #12394627); }
     footer { padding: 1rem clamp(1.3rem, 5vw, 5rem) 1.6rem; color: #4c727b; font-size: .76rem; font-weight: 750; }
-    @keyframes float { 50% { transform: rotate(-7deg) translateY(-.6rem); } }
-    @keyframes turn { to { transform: rotate(360deg); } }
-    @media (max-width: 760px) { main { grid-template-columns: 1fr; padding-top: 1rem; text-align: center; } h1, .description { margin-left: auto; margin-right: auto; } .art { width: min(70vw, 340px); margin: auto; order: -1; } .topbar small { display: none; } footer { text-align: center; } }
+    @media (max-width: 760px) { main { grid-template-columns: 1fr; padding-top: 1rem; text-align: center; } h1, .description { margin-left: auto; margin-right: auto; } .art { width: min(80vw, 330px); margin: auto; } .art img { max-height: 42svh; } .topbar small { display: none; } footer { text-align: center; } }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
   </style>
 </head>
@@ -47,7 +42,7 @@
         <p class="description">No podemos mostrarte esta página. Si crees que se trata de un error, vuelve al inicio e inténtalo de nuevo desde allí.</p>
         <a class="action" href="/">Volver al inicio <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="art" aria-hidden="true"><div class="badge"><strong>403</strong></div><span class="dot"></span></div>
+      <div class="art"><img src="/error-assets/403.png" width="1065" height="1477" alt="Gorila que indica alto junto al mensaje de acceso restringido"></div>
     </main>
     <footer>ReMicos · Un lugar para seguir jugando.</footer>
   </div>
